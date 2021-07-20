@@ -10,5 +10,15 @@ namespace ETraveller.api.Travels.Data
         {
 
         }
-    }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Travel>(entity =>
+            {
+                entity.Property(e => e.Id).HasDefaultValueSql("NEWID()");
+
+                entity.Property(e => e.Name);
+                entity.Property(e => e.Type);
+            });
+        }
+        }
 }
