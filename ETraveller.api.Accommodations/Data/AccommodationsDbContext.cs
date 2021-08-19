@@ -16,6 +16,7 @@ namespace ETraveller.api.Accommodations.Data
             {
                 entity.Property(e => e.Id).HasDefaultValueSql("NEWID()");
 
+                entity.Property(e => e.TravelId);
                 entity.Property(e => e.Name);
                 entity.Property(e => e.Adress);
                 entity.Property(e => e.CheckOut);

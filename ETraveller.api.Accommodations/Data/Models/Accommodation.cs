@@ -5,6 +5,7 @@ namespace ETraveller.api.Accommodations.Data.Models
     public class Accommodation
     {
         public Guid Id { get; set; }
+        public Guid TravelId { get; set; }
 
         public string Name { get; set; }
         public string Adress { get; set; }

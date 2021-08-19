@@ -1,4 +1,4 @@
-﻿namespace ETraveller.api.Travels.Models.Enums
+﻿namespace ETraveller.Common.Enums
 {
     public enum TravelType
     {

@@ -1,4 +1,4 @@
-﻿using ETraveller.api.Flights.Models.Enum;
+﻿using ETraveller.Common.Enum;
 using System;
 
 namespace ETraveller.api.Flights.Data.Models
@@ -6,6 +6,8 @@ namespace ETraveller.api.Flights.Data.Models
     public class Flight
     {
         public Guid Id { get; set; }
+        public Guid TravelId { get; set; }
+
 
         public string Departure { get; set; }
         public DateTime DepartureTime { get; set; }

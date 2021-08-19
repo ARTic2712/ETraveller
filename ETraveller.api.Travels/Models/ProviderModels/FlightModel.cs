@@ -1,12 +1,13 @@
 ﻿using ETraveller.Common.Enum;
 using System;
 
-namespace ETraveller.api.Flights.Models.ProviderModels
+namespace ETraveller.api.Travels.Models.ProviderModels
 {
-    public class FlightProviderModel
+    public class FlightModel
     {
         public Guid Id { get; set; }
         public Guid TravelId { get; set; }
+
 
         public string Departure { get; set; }
         public DateTime DepartureTime { get; set; }
@@ -15,7 +16,7 @@ namespace ETraveller.api.Flights.Models.ProviderModels
         public DateTime ArrivalTime { get; set; }
 
         public short PassengerCount { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
         public FlightClass FlightClass { get; set; }
     }

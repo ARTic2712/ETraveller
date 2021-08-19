@@ -1,4 +1,4 @@
-﻿namespace ETraveller.api.Flights.Models.Enum
+﻿namespace ETraveller.Common.Enum
 {
     public enum FlightClass
     {

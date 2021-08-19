@@ -16,6 +16,7 @@ namespace ETraveller.api.Flights.Data
             {
                 entity.Property(e => e.Id).HasDefaultValueSql("NEWID()");
 
+                entity.Property(e => e.TravelId);
                 entity.Property(e => e.FlightClass);
                 entity.Property(e => e.Departure);
                 entity.Property(e => e.DepartureTime);

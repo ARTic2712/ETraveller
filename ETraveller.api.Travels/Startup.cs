@@ -24,6 +24,14 @@ namespace ETraveller.api.Travels
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ITravelProvider, TravelProvider>();
+            services.AddHttpClient("FlightsServices", config =>
+            {
+                config.BaseAddress = new System.Uri(Configuration.GetSection("Services").GetSection("Flights").Value);
+            });
+            services.AddHttpClient("AccommodationsServices", config =>
+            {
+                config.BaseAddress = new System.Uri(Configuration.GetSection("Services").GetSection("Accommodations").Value);
+            });
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<TravelsDbContext>(options =>
                 options.UseSqlServer(

@@ -16,6 +16,7 @@ namespace ETraveller.api.Travels.Data
             {
                 entity.Property(e => e.Id).HasDefaultValueSql("NEWID()");
 
+                entity.Property(e => e.UserId);
                 entity.Property(e => e.Name);
                 entity.Property(e => e.Type);
             });
