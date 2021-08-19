@@ -41,5 +41,23 @@ namespace ETraveller.api.Travels.Providers
                 return new ProviderResult<IEnumerable<TravelProviderModel>>(false, null, ex.Message.ToString());
             }
         }
+
+        public async Task<ProviderResult<TravelProviderModel>> GetAsync(Guid id)
+        {
+            try
+            {
+                var travel = await _travelsDbContext.Travels.FirstOrDefaultAsync(w=>w.Id == id);
+                if (travel != null)
+                {
+                    return new ProviderResult<TravelProviderModel>(true, _mapper.Map<TravelProviderModel>(travel), null);
+                }
+                return new ProviderResult<TravelProviderModel>(false, null, "Not Found");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return new ProviderResult<TravelProviderModel>(false, null, ex.Message.ToString());
+            }
+        }
     }
 }

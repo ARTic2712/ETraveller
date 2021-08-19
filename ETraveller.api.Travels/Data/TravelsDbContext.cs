@@ -20,5 +20,5 @@ namespace ETraveller.api.Travels.Data
                 entity.Property(e => e.Type);
             });
         }
-        }
+    }
 }
