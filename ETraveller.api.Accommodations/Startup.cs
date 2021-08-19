@@ -1,14 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using ETraveller.api.Accommodations.Data;
+using ETraveller.api.Accommodations.Interfaces;
+using ETraveller.api.Accommodations.Providers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace ETraveller.api.Accommodations
 {
@@ -24,6 +22,12 @@ namespace ETraveller.api.Accommodations
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IAccommodationProvider, AccommodationProvider>();
+
+            services.AddAutoMapper(typeof(Startup));
+            services.AddDbContext<AccommodationsDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
         }
 
