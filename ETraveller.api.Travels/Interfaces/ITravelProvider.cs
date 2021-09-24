@@ -10,5 +10,7 @@ namespace ETraveller.api.Travels.Interfaces
     {
         Task<ProviderResult<IEnumerable<TravelProviderModel>>> GetAllAsync();
         Task<ProviderResult<TravelProviderModel>> GetAsync(Guid id);
+        Task<ProviderResult<IEnumerable<FlightModel>>> GetTravelFlightsAsync(Guid id);
+
     }
 }

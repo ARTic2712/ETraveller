@@ -2,12 +2,14 @@ using AutoMapper;
 using ETraveller.api.Travels.Data;
 using ETraveller.api.Travels.Interfaces;
 using ETraveller.api.Travels.Providers;
+using ETraveller.Common.Consts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Polly;
 
 namespace ETraveller.api.Travels
 {
@@ -24,14 +26,18 @@ namespace ETraveller.api.Travels
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ITravelProvider, TravelProvider>();
-            services.AddHttpClient("FlightsServices", config =>
+            services.AddScoped<IFlightService, FlightService>();
+
+            services.AddHttpClient(ServiceName.FlightService, config =>
             {
                 config.BaseAddress = new System.Uri(Configuration.GetSection("Services").GetSection("Flights").Value);
-            });
-            services.AddHttpClient("AccommodationsServices", config =>
+            })
+                .AddTransientHttpErrorPolicy(p=>p.WaitAndRetryAsync(5,_=> System.TimeSpan.FromMilliseconds(500)));
+            services.AddHttpClient(ServiceName.AccommodationService, config =>
             {
                 config.BaseAddress = new System.Uri(Configuration.GetSection("Services").GetSection("Accommodations").Value);
-            });
+            })
+                .AddTransientHttpErrorPolicy(p => p.WaitAndRetryAsync(5, _ => System.TimeSpan.FromMilliseconds(500))); ;
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<TravelsDbContext>(options =>
                 options.UseSqlServer(

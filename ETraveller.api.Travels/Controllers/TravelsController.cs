@@ -37,5 +37,15 @@ namespace ETraveller.api.Travels.Controllers
             }
             return NotFound();
         }
+        [HttpGet, Route("{id}/flights")]
+        public async Task<IActionResult> GetTravelFlightsAsync(Guid id)
+        {
+            var result = await _travelProvider.GetTravelFlightsAsync(id);
+            if (result.IsSuccess)
+            {
+                return Ok(result.Data);
+            }
+            return NotFound();
+        }
     }
 }

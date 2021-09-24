@@ -17,11 +17,13 @@ namespace ETraveller.api.Travels.Providers
         private readonly TravelsDbContext _travelsDbContext;
         private readonly ILogger<TravelProvider> _logger;
         private readonly IMapper _mapper;
-        public TravelProvider(TravelsDbContext travelDbContext, ILogger<TravelProvider> logger, IMapper mapper)
+        private readonly IFlightService _flightService;
+        public TravelProvider(TravelsDbContext travelDbContext, ILogger<TravelProvider> logger, IMapper mapper, IFlightService flightService)
         {
             _travelsDbContext = travelDbContext;
             _logger = logger;
             _mapper = mapper;
+            _flightService = flightService;
         }
 
         public async Task<ProviderResult<IEnumerable<TravelProviderModel>>> GetAllAsync()
@@ -58,6 +60,11 @@ namespace ETraveller.api.Travels.Providers
                 _logger.LogError(ex.ToString());
                 return new ProviderResult<TravelProviderModel>(false, null, ex.Message.ToString());
             }
+        }
+
+        public Task<ProviderResult<IEnumerable<FlightModel>>> GetTravelFlightsAsync(Guid id)
+        {
+            return _flightService.GetFlightsAsync(id);
         }
     }
 }

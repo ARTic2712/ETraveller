@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ETraveller.api.Flights.Data;
+using ETraveller.api.Flights.Data.Models;
 using ETraveller.api.Flights.Interfaces;
 using ETraveller.api.Flights.Models.ProviderModels;
 using ETraveller.Common.Models;
@@ -24,11 +25,11 @@ namespace ETraveller.api.Flights.Providers
             _logger = logger;
             _mapper = mapper;
         }
-        public async Task<ProviderResult<IEnumerable<FlightProviderModel>>> GetAllAsync()
+        public async Task<ProviderResult<IEnumerable<FlightProviderModel>>> GetAsync(Func<Flight,bool> selector = null)
         {
             try
             {
-                var flights = await _flightsDbContext.Flights.ToListAsync();
+                var flights = selector == null ? await _flightsDbContext.Flights.ToListAsync() : _flightsDbContext.Flights.Where(selector).ToList();
                 if (flights != null && flights.Any())
                 {
                     return new ProviderResult<IEnumerable<FlightProviderModel>>(true, _mapper.Map<IEnumerable<FlightProviderModel>>(flights), null);
@@ -58,6 +59,6 @@ namespace ETraveller.api.Flights.Providers
                 _logger.LogError(ex.ToString());
                 return new ProviderResult<FlightProviderModel>(false, null, ex.Message.ToString());
             }
-        }
+        }     
     }
 }
