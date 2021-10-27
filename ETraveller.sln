@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETraveller.api.Travels", "E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETraveller.api.Accommodations", "ETraveller.api.Accommodations\ETraveller.api.Accommodations.csproj", "{D154941A-CB7E-49D3-A42B-200091450007}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETraveller.Common", "ETraveller.Common\ETraveller.Common.csproj", "{0D8B6B87-A215-40A6-B2F1-7841B3C0933D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETraveller.Common", "ETraveller.Common\ETraveller.Common.csproj", "{0D8B6B87-A215-40A6-B2F1-7841B3C0933D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETravaller.api.Flights.Tests", "ETravaller.api.Flights.Tests\ETravaller.api.Flights.Tests.csproj", "{E51CCE70-071B-4DA2-AB1D-863D38D75674}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0D8B6B87-A215-40A6-B2F1-7841B3C0933D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D8B6B87-A215-40A6-B2F1-7841B3C0933D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D8B6B87-A215-40A6-B2F1-7841B3C0933D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E51CCE70-071B-4DA2-AB1D-863D38D75674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E51CCE70-071B-4DA2-AB1D-863D38D75674}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E51CCE70-071B-4DA2-AB1D-863D38D75674}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E51CCE70-071B-4DA2-AB1D-863D38D75674}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
