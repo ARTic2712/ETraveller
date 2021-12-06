@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  etraveller.api.accommodations:
+    image: ${DOCKER_REGISTRY-}etravellerapiaccommodations
+    build:
+      context: .
+      dockerfile: ETraveller.api.Accommodations\Dockerfile
+
+  etraveller.api.flights:
+    image: ${DOCKER_REGISTRY-}etravellerapiflights
+    build:
+      context: .
+      dockerfile: ETraveller.api.Flights\Dockerfile
+
+
+  etraveller.api.travels:
+    image: ${DOCKER_REGISTRY-}etravellerapitravels
+    build:
+      context: .
+      dockerfile: ETraveller.api.Travels\Dockerfile
+
