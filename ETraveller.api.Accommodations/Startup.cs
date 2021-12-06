@@ -11,7 +11,7 @@ using Microsoft.Extensions.Hosting;
 namespace ETraveller.api.Accommodations
 {
     public class Startup
-    {
+    { 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
