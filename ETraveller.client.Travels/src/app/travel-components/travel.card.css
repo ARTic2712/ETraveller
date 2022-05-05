@@ -1,0 +1,27 @@
+.travel-card{
+    font-family: serif;
+    background-color: #eaf6f6; 
+    border-radius: 10px;
+    height: 200px;
+    width: 90%;
+    padding-right: 20px;
+}
+.travel-card-img{
+    border-radius: 10px 0px 0px 10px;
+    height: 200px;
+    width: 320px;
+}
+.travel-card-view-button{
+    background-color: #f76b8a;
+    width: 100px;
+    border-radius: 10px;
+    height: 40px;
+    border:0;
+    color:#fcfefe;
+}
+h1,p{
+    color: #66bfbf; 
+}
+p{
+    font-size: 18px;
+}

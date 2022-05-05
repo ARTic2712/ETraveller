@@ -1,0 +1,7 @@
+<div class="col-12 mt-5 mx-auto" style="width: 90%;">
+    <input type="text" class="form-control" placeholder="Search" aria-label="Travel Title" (keyup)="SearchTravel($any($event.target).value)">
+</div>
+
+<div class="col-12 mt-5" *ngFor="let travel of TravelsFiltered">
+    <app-travel-card [travel]="travel"></app-travel-card>
+</div>
