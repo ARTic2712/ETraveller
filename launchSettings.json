@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "etraveller.api.accommodations": "StartDebugging",
+        "etraveller.api.flights": "StartDebugging",
+        "etraveller.api.travels": "StartDebugging"
+      }
+    }
+  }
+}

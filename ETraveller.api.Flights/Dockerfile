@@ -1,0 +1,25 @@
+#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+WORKDIR /app
+EXPOSE 8080
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+COPY ["ETraveller.api.Flights/ETraveller.api.Flights.csproj", "ETraveller.api.Flights/"]
+COPY ["ETraveller.api.Travels/ETraveller.api.Travels.csproj", "ETraveller.api.Travels/"]
+COPY ["ETraveller.Common/ETraveller.Common.csproj", "ETraveller.Common/"]
+RUN dotnet restore "./ETraveller.api.Flights/ETraveller.api.Flights.csproj"
+COPY . .
+WORKDIR "/src/ETraveller.api.Flights"
+RUN dotnet build "./ETraveller.api.Flights.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "./ETraveller.api.Flights.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "ETraveller.api.Flights.dll"]
