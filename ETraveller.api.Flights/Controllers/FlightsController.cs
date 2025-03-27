@@ -1,5 +1,8 @@
-﻿using ETraveller.api.Flights.Interfaces;
+﻿using ETraveller.api.Flights.Data.Seed;
+using ETraveller.api.Flights.Interfaces;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Threading.Tasks;
 
@@ -11,9 +14,16 @@ namespace ETraveller.api.Flights.Controllers
     {
         private readonly IFlightProvider _flightProvider;
 
-        public FlightsController(IFlightProvider flightProvider)
+        public FlightsController(IWebHostEnvironment env, IFlightProvider flightProvider)
         {
-            _flightProvider = flightProvider;
+            if (env.EnvironmentName.Equals("localhost") || env.IsDevelopment())
+            {
+                _flightProvider = SeedFlights.GetInMemoryFlightProvider();
+            }
+            else
+            {
+                _flightProvider = flightProvider;
+            }
         }
         [HttpGet]
         public async Task<IActionResult> GetTasksAsync()

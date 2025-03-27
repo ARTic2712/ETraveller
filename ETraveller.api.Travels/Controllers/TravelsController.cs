@@ -1,6 +1,11 @@
-﻿using ETraveller.api.Travels.Interfaces;
+﻿using ETraveller.api.Travels.Data.Seed;
+using ETraveller.api.Travels.Interfaces;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using System;
+using System.Configuration;
 using System.Threading.Tasks;
 
 namespace ETraveller.api.Travels.Controllers
@@ -11,9 +16,16 @@ namespace ETraveller.api.Travels.Controllers
     {
         private readonly ITravelProvider _travelProvider;
 
-        public TravelsController(ITravelProvider travelProvider)
+        public TravelsController(IWebHostEnvironment env, IFlightService flightService, ITravelProvider travelProvider, IConfiguration configuration)
         {
-            _travelProvider = travelProvider;
+            if (env.EnvironmentName.Equals("localhost") || env.IsDevelopment())
+            {
+                _travelProvider = SeedTravels.GetInMemoryTravelProvider(flightService);
+            }
+            else
+            {
+                _travelProvider = travelProvider;
+            }
         }
 
         [HttpGet]

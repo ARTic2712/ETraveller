@@ -5,18 +5,20 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "6001:8080"
+      - "6001:80"
 
   etraveller.api.flights:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "6002:8080"
+      - "6002:80"
 
 
   etraveller.api.travels:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - Services__Accommodations=http://etraveller.api.accommodation
+      - Services__Flights=http://etraveller.api.flights
     ports:
-      - "6003:8080"
+      - "6003:80"
 
